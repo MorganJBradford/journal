@@ -1,11 +1,20 @@
+// Business logic for Journal
 export function Journal() {
   this.entries = {};
+  this.id = 0;
 }
 Journal.prototype.addEntry = function(entry) {
-  entry.date = Date.now();
-  this.entries[entry.date] = entry;
+  entry.date = Date();
+  entry.id = this.assignID();
+  this.entries[entry.id] = entry;
 };
 
+Journal.prototype.assignID = function() {
+  this.id += 1;
+  return this.id;
+};
+
+// Business logic for Entry
 export function Entry(title, post) {
   this.title = title;
   this.post = post;
@@ -30,3 +39,5 @@ Entry.prototype.getTeaser = function() {
     return this.post;
   }
 };
+
+
